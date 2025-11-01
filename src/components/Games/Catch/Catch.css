@@ -1,0 +1,252 @@
+.catch-game {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.catch-header {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.catch-title {
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.catch-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.stat-item {
+  background: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #666;
+  margin-right: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4ECDC4;
+}
+
+.start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.start-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.start-title {
+  font-size: 3rem;
+  color: #4ECDC4;
+  margin-bottom: 1rem;
+}
+
+.start-instructions {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.start-button {
+  background: #4ECDC4;
+  color: white;
+  border: none;
+  padding: 1.5rem 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.start-button:hover {
+  transform: scale(1.1);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+}
+
+.game-area {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  background: linear-gradient(to bottom, #87CEEB 0%, #E0F6F6 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  cursor: none;
+}
+
+.falling-item {
+  position: absolute;
+  font-size: 3rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+  will-change: top;
+}
+
+.basket {
+  position: absolute;
+  bottom: 20px;
+  font-size: 5rem;
+  transform: translateX(-50%);
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+  will-change: left;
+}
+
+.win-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.win-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.win-title {
+  font-size: 4rem;
+  color: #4ECDC4;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.lose-title {
+  color: #FF6B6B;
+}
+
+.win-message {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.win-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.play-again-button,
+.back-to-hub-button {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.play-again-button {
+  background: #4ECDC4;
+  color: white;
+}
+
+.back-to-hub-button {
+  background: #FF6B6B;
+  color: white;
+}
+
+.play-again-button:hover,
+.back-to-hub-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .catch-title {
+    font-size: 2rem;
+  }
+  
+  .game-area {
+    height: 400px;
+  }
+  
+  .basket {
+    font-size: 4rem;
+  }
+  
+  .falling-item {
+    font-size: 2.5rem;
+  }
+}
