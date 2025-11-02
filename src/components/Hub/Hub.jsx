@@ -5,17 +5,17 @@ function Hub({ onGameSelect }) {
   const games = [
     { id: 'memory', title: 'Memory Match', color: '#FF6B6B', icon: '🎴' },
     { id: 'catch', title: 'Catch & Collect', color: '#4ECDC4', icon: '🎯' },
-    { id: 'colors', title: 'Color Sort', color: '#95E1D3', icon: '🎨' },
-    { id: 'puzzle', title: 'Puzzle Fun', color: '#FFE66D', icon: '🧩' },
+    { id: 'hangman', title: 'Hangman', color: '#95E1D3', icon: '✏️' },
+    { id: 'runner', title: 'Super Runner', color: '#FFE66D', icon: '🏃' },
+    { id: 'tictactoe', title: 'Tic-Tac-Toe', color: '#A78BFA', icon: '⭕' },
+    { id: 'whackamole', title: 'Whack-a-Mole', color: '#F59E42', icon: '🔨' },
+    { id: 'snake', title: 'Snake Game', color: '#81C784', icon: '🐍' },
+    { id: 'maze', title: 'Maze Runner', color: '#9C88FF', icon: '🧩' },
   ]
 
   const handleGameClick = (gameId) => {
     soundPlayer.playClick()
-    if (gameId === 'memory' || gameId === 'catch') {
-      onGameSelect(gameId)
-    } else {
-      alert('This game is coming soon! 🎮')
-    }
+    onGameSelect(gameId)
   }
 
   return (

@@ -1,0 +1,364 @@
+.maze-game {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #FFEAA7 0%, #FD79A8 50%, #6C5CE7 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.maze-header {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.back-button {
+  background: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.maze-title {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sound-toggle {
+  background: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-toggle:hover {
+  transform: scale(1.1);
+}
+
+.sound-toggle:active {
+  transform: scale(0.95);
+}
+
+.maze-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-item {
+  background: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #666;
+  margin-right: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6C5CE7;
+}
+
+.maze-container {
+  background: white;
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.maze-grid {
+  display: grid;
+  gap: 2px;
+  background: #2d3436;
+  padding: 2px;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.maze-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.maze-cell.wall {
+  background: #2d3436;
+}
+
+.maze-cell.path {
+  background: #dfe6e9;
+}
+
+.maze-cell.player {
+  background: #74b9ff;
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+.maze-cell.exit {
+  background: #55efc4;
+}
+
+.collectible {
+  animation: bounce 0.5s ease-in-out infinite;
+}
+
+.touch-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.control-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  background: white;
+  border: none;
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  font-size: 2.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:active {
+  transform: scale(0.9);
+}
+
+.start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.start-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.start-title {
+  font-size: 3rem;
+  color: #6C5CE7;
+  margin-bottom: 1rem;
+}
+
+.start-instructions {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.start-button {
+  background: #6C5CE7;
+  color: white;
+  border: none;
+  padding: 1.5rem 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.start-button:hover {
+  transform: scale(1.1);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+}
+
+.win-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.win-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.win-title {
+  font-size: 4rem;
+  color: #6C5CE7;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.win-message {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.win-stats {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.win-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.play-again-button,
+.back-to-hub-button {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.play-again-button {
+  background: #4ECDC4;
+  color: white;
+}
+
+.back-to-hub-button {
+  background: #FF6B6B;
+  color: white;
+}
+
+.play-again-button:hover,
+.back-to-hub-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.1); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .maze-title {
+    font-size: 2rem;
+  }
+  
+  .maze-grid {
+    max-width: 350px;
+    max-height: 350px;
+  }
+  
+  .maze-cell {
+    font-size: 1rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .start-button,
+  .play-again-button,
+  .back-to-hub-button {
+    padding: 2rem 3.5rem;
+    font-size: 1.8rem;
+    min-height: 60px;
+  }
+}

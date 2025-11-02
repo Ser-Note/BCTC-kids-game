@@ -1,0 +1,429 @@
+.tictactoe-game {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.tictactoe-header {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  background: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.tictactoe-title {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sound-toggle {
+  background: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-toggle:hover {
+  transform: scale(1.1);
+}
+
+.sound-toggle:active {
+  transform: scale(0.95);
+}
+
+.mode-selector {
+  background: white;
+  border-radius: 30px;
+  padding: 3rem;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  max-width: 700px;
+}
+
+.mode-title {
+  font-size: 2.5rem;
+  color: #7C3AED;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.mode-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.mode-button {
+  border: none;
+  border-radius: 20px;
+  padding: 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: 'Fredoka', sans-serif;
+  min-height: 250px;
+}
+
+.mode-button.pvp {
+  background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+}
+
+.mode-button.bot {
+  background: linear-gradient(135deg, #FFE66D 0%, #FFA06B 100%);
+}
+
+.mode-button:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.mode-button:active {
+  transform: translateY(-4px);
+}
+
+.mode-icon {
+  font-size: 5rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.mode-name {
+  font-size: 2rem;
+  color: white;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mode-description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  font-weight: 500;
+}
+
+.tictactoe-info {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.scores {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.score-item {
+  background: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.score-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #666;
+  margin-right: 0.5rem;
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #A78BFA;
+}
+
+.turn-indicator {
+  text-align: center;
+}
+
+.current-turn {
+  font-size: 2rem;
+  color: white;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  display: inline-block;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 500px;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.square {
+  aspect-ratio: 1;
+  background: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 5rem;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square:hover:not(:disabled):not(.filled) {
+  transform: scale(1.05);
+  background: #F3F4F6;
+}
+
+.square:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.square:disabled {
+  cursor: not-allowed;
+}
+
+.square.filled {
+  cursor: default;
+}
+
+.square.winning {
+  background: linear-gradient(135deg, #FFE66D 0%, #FFA06B 100%);
+  animation: winPulse 0.5s ease-in-out infinite;
+}
+
+.game-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.control-button {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.control-button.reset {
+  background: #4ECDC4;
+  color: white;
+}
+
+.control-button.change-mode {
+  background: white;
+  color: #7C3AED;
+}
+
+.control-button:hover {
+  transform: scale(1.05);
+}
+
+.control-button:active {
+  transform: scale(0.95);
+}
+
+.win-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.win-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.win-title {
+  font-size: 4rem;
+  color: #A78BFA;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.win-message {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.win-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.play-again-button,
+.back-to-hub-button {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.play-again-button {
+  background: #4ECDC4;
+  color: white;
+}
+
+.back-to-hub-button {
+  background: #FF6B6B;
+  color: white;
+}
+
+.play-again-button:hover,
+.back-to-hub-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes winPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .square {
+    font-size: 6rem;
+  }
+  
+  .square:hover:not(:disabled):not(.filled) {
+    transform: none;
+    background: white;
+  }
+  
+  .mode-button:hover {
+    transform: none;
+  }
+  
+  .mode-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .tictactoe-title {
+    font-size: 2rem;
+  }
+  
+  .mode-selector {
+    padding: 2rem;
+  }
+  
+  .mode-title {
+    font-size: 2rem;
+  }
+  
+  .mode-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .board {
+    max-width: 350px;
+    gap: 0.75rem;
+  }
+  
+  .square {
+    font-size: 4rem;
+  }
+  
+  .current-turn {
+    font-size: 1.5rem;
+  }
+  
+  .game-controls {
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .control-button {
+    width: 100%;
+  }
+}

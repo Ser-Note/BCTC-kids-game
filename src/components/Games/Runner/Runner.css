@@ -1,0 +1,393 @@
+.runner-game {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 50%, #90EE90 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.runner-header {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.back-button {
+  background: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.runner-title {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sound-toggle {
+  background: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-toggle:hover {
+  transform: scale(1.1);
+}
+
+.sound-toggle:active {
+  transform: scale(0.95);
+}
+
+.runner-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-item {
+  background: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #666;
+  margin-right: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFE66D;
+}
+
+.runner-game-area {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 400px;
+  background: linear-gradient(to bottom, transparent 0%, transparent 70%, #8B7355 70%, #A0826D 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: #654321;
+  z-index: 1;
+}
+
+.player {
+  position: absolute;
+  left: 15%;
+  font-size: 4rem;
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.3));
+  z-index: 10;
+  transition: font-size 0.2s;
+  transform: scaleX(-1); /* Flip the runner to face right */
+}
+
+.player.ducking {
+  font-size: 3rem;
+}
+
+.obstacle {
+  position: absolute;
+  font-size: 3.5rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  z-index: 5;
+}
+
+.collectible {
+  position: absolute;
+  font-size: 2.5rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  z-index: 5;
+  animation: spin 2s linear infinite;
+}
+
+.start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.start-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.start-title {
+  font-size: 3rem;
+  color: #FFE66D;
+  margin-bottom: 1rem;
+}
+
+.start-instructions {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.start-button {
+  background: #FFE66D;
+  color: #333;
+  border: none;
+  padding: 1.5rem 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.start-button:hover {
+  transform: scale(1.1);
+}
+
+.start-button:active {
+  transform: scale(0.95);
+}
+
+.win-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.win-content {
+  background: white;
+  padding: 3rem;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.5s ease-out;
+}
+
+.win-title {
+  font-size: 4rem;
+  color: #FFE66D;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.lose-title {
+  color: #FF6B6B;
+}
+
+.win-message {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.win-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.play-again-button,
+.back-to-hub-button {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.play-again-button {
+  background: #4ECDC4;
+  color: white;
+}
+
+.back-to-hub-button {
+  background: #FF6B6B;
+  color: white;
+}
+
+.play-again-button:hover,
+.back-to-hub-button:hover {
+  transform: scale(1.05);
+}
+
+.touch-controls {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2rem;
+  z-index: 50;
+}
+
+.jump-button,
+.duck-button {
+  background: white;
+  border: none;
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s;
+  font-family: 'Fredoka', sans-serif;
+  color: #333;
+}
+
+.jump-button {
+  background: #4ECDC4;
+  color: white;
+}
+
+.duck-button {
+  background: #FFE66D;
+  color: #333;
+}
+
+.jump-button:active,
+.duck-button:active {
+  transform: scale(0.9);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .runner-title {
+    font-size: 2rem;
+  }
+  
+  .runner-game-area {
+    height: 300px;
+  }
+  
+  .player {
+    font-size: 3rem;
+  }
+  
+  .player.ducking {
+    font-size: 2.5rem;
+  }
+  
+  .obstacle {
+    font-size: 2.5rem;
+  }
+  
+  .collectible {
+    font-size: 2rem;
+  }
+  
+  .touch-controls {
+    bottom: 1rem;
+    gap: 1rem;
+  }
+  
+  .jump-button,
+  .duck-button {
+    padding: 1.5rem 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .start-button,
+  .play-again-button,
+  .back-to-hub-button {
+    padding: 2rem 3.5rem;
+    font-size: 1.8rem;
+    min-height: 60px;
+  }
+}

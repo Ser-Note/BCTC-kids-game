@@ -2,6 +2,12 @@ import { useState } from 'react'
 import Hub from './components/Hub/Hub'
 import Memory from './components/Games/Memory/Memory'
 import Catch from './components/Games/Catch/Catch'
+import Hangman from './components/Games/Hangman/Hangman'
+import Runner from './components/Games/Runner/Runner'
+import TicTacToe from './components/Games/TicTacToe/TicTacToe'
+import WhackAMole from './components/Games/WhackAMole/WhackAMole'
+import Snake from './components/Games/Snake/Snake'
+import Maze from './components/Games/Maze/Maze'
 import DifficultySelector from './components/Shared/DifficultySelector/DifficultySelector'
 import './App.css'
 
@@ -35,6 +41,12 @@ function App() {
   const getGameName = () => {
     if (selectedGame === 'memory') return 'Memory Match'
     if (selectedGame === 'catch') return 'Catch & Collect'
+    if (selectedGame === 'hangman') return 'Hangman'
+    if (selectedGame === 'runner') return 'Super Runner'
+    if (selectedGame === 'tictactoe') return 'Tic-Tac-Toe'
+    if (selectedGame === 'whackamole') return 'Whack-a-Mole'
+    if (selectedGame === 'snake') return 'Snake Game'
+    if (selectedGame === 'maze') return 'Maze Runner'
     return ''
   }
 
@@ -43,6 +55,12 @@ function App() {
       {currentScreen === 'hub' && <Hub onGameSelect={navigateToGame} />}
       {currentScreen === 'memory' && <Memory difficulty={difficulty} onBackToHub={navigateToHub} />}
       {currentScreen === 'catch' && <Catch difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'hangman' && <Hangman difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'runner' && <Runner difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'tictactoe' && <TicTacToe difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'whackamole' && <WhackAMole difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'snake' && <Snake difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'maze' && <Maze difficulty={difficulty} onBackToHub={navigateToHub} />}
       
       {/* Show difficulty selector when a game is selected but not started */}
       {selectedGame && !difficulty && currentScreen === 'hub' && (

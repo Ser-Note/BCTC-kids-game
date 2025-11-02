@@ -13,6 +13,36 @@ function DifficultySelector({ gameName, onSelect, onClose }) {
       easy: 'Slow speed • 5 lives • Endless',
       medium: 'Faster • 3 lives • Endless',
       hard: 'Super fast! • 1 life • Endless'
+    },
+    'Hangman': {
+      easy: 'Short words • 8 tries • Hint 🎁',
+      medium: '5-letter words • 6 tries',
+      hard: 'Long words • Only 4 tries!'
+    },
+    'Super Runner': {
+      easy: 'Slow pace • Easy jumps',
+      medium: 'Faster • More obstacles',
+      hard: 'Super speed • Expert only!'
+    },
+    'Tic-Tac-Toe': {
+      easy: 'Bot makes mistakes',
+      medium: 'Smart bot • Some strategy',
+      hard: 'Unbeatable AI! 🤖'
+    },
+    'Whack-a-Mole': {
+      easy: '3x3 grid • Slow • No bombs',
+      medium: '4x4 grid • Faster • Some 💣',
+      hard: '5x5 grid • Very fast • Many 💣'
+    },
+    'Snake Game': {
+      easy: 'Slow snake • Start length 3',
+      medium: 'Faster • Start length 5',
+      hard: 'Very fast! • Start length 7'
+    },
+    'Maze Runner': {
+      easy: '9x9 maze • 3 collectibles ⭐',
+      medium: '13x13 maze • 5 collectibles',
+      hard: '17x17 maze • 7 collectibles'
     }
   }
 
