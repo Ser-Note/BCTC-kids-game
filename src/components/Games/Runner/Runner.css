@@ -20,6 +20,7 @@
 
 .back-button {
   background: white;
+  color: #333;
   border: none;
   padding: 1rem 2rem;
   border-radius: 15px;
@@ -29,6 +30,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
   font-family: 'Fredoka', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .back-button:hover {
@@ -125,6 +128,11 @@
   z-index: 10;
   transition: font-size 0.2s;
   transform: scaleX(-1); /* Flip the runner to face right */
+  will-change: transform, bottom;
+  transform: scaleX(-1) translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: scaleX(-1) translateZ(0);
 }
 
 .player.ducking {
@@ -136,6 +144,11 @@
   font-size: 3.5rem;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
   z-index: 5;
+  will-change: left;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }
 
 .collectible {
@@ -144,6 +157,11 @@
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
   z-index: 5;
   animation: spin 2s linear infinite;
+  will-change: left;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }
 
 .start-overlay {

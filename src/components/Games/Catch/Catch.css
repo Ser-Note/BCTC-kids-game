@@ -252,17 +252,24 @@
   pointer-events: none;
   will-change: top;
   z-index: 10;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }
 
 .basket {
   position: absolute;
   bottom: 20px;
   font-size: 5rem;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
   filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.3));
   pointer-events: none;
   will-change: left;
   z-index: 15;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateX(-50%) translateZ(0);
 }
 
 .win-overlay {
@@ -395,12 +402,16 @@
 .thumbstick-thumb {
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   font-size: 4rem;
   filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
   transition: left 0.05s ease-out;
   pointer-events: none;
   z-index: 51;
+  will-change: left;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate(-50%, -50%) translateZ(0);
 }
 
 /* Responsive */
