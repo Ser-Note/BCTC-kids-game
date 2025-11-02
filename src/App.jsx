@@ -26,6 +26,7 @@ function App() {
 
   const navigateToHub = () => {
     setCurrentScreen('hub')
+    // Reset all state to prevent white screen bug
     setSelectedGame(null)
     setDifficulty(null)
   }
@@ -44,7 +45,7 @@ function App() {
       {currentScreen === 'catch' && <Catch difficulty={difficulty} onBackToHub={navigateToHub} />}
       
       {/* Show difficulty selector when a game is selected but not started */}
-      {selectedGame && !difficulty && (
+      {selectedGame && !difficulty && currentScreen === 'hub' && (
         <DifficultySelector 
           gameName={getGameName()}
           onSelect={handleDifficultySelect}

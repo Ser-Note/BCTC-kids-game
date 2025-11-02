@@ -2,27 +2,43 @@ import './DifficultySelector.css'
 import soundPlayer from '../../../utils/sounds'
 
 function DifficultySelector({ gameName, onSelect, onClose }) {
+  // Different descriptions for each game
+  const gameDescriptions = {
+    'Memory Match': {
+      easy: '2x3 grid • See the cards',
+      medium: '2x3 grid • Cards shuffle!',
+      hard: '4x4 grid • Shuffle • 10 moves!'
+    },
+    'Catch & Collect': {
+      easy: 'Slow speed • 5 lives • Endless',
+      medium: 'Faster • 3 lives • Endless',
+      hard: 'Super fast! • 1 life • Endless'
+    }
+  }
+
+  const descriptions = gameDescriptions[gameName] || gameDescriptions['Memory Match']
+
   const levels = [
     {
       id: 'easy',
       name: 'Easy',
       color: '#95E1D3',
       icon: '😊',
-      description: '2x3 grid • See the cards'
+      description: descriptions.easy
     },
     {
       id: 'medium',
       name: 'Medium',
       color: '#FFE66D',
       icon: '😎',
-      description: '2x3 grid • Cards shuffle!'
+      description: descriptions.medium
     },
     {
       id: 'hard',
       name: 'Hard',
       color: '#FF6B6B',
       icon: '🔥',
-      description: '4x4 grid • Shuffle • 20 moves!'
+      description: descriptions.hard
     }
   ]
 

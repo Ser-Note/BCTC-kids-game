@@ -96,3 +96,44 @@
     transform: translateY(-15px) scale(1.05);
   }
 }
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .card {
+    min-width: 120px;
+    min-height: 120px;
+  }
+  
+  .card-question {
+    font-size: 4rem;
+  }
+  
+  .card-image {
+    font-size: 5rem;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .card:not(.flipped):hover .card-inner {
+    transform: none;
+  }
+  
+  /* Make tap feedback more obvious */
+  .card:active .card-inner {
+    transform: scale(0.9);
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 768px) {
+  .card {
+    min-width: 100px;
+  }
+  
+  .card-question {
+    font-size: 3.5rem;
+  }
+  
+  .card-image {
+    font-size: 4.5rem;
+  }
+}

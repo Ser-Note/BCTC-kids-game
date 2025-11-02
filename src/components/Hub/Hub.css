@@ -82,3 +82,59 @@
     min-height: 250px;
   }
 }
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .game-card {
+    /* Larger tap targets for touch */
+    min-height: 200px;
+  }
+  
+  .game-card:hover {
+    /* Remove hover effects on touch devices */
+    transform: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .game-card:active {
+    /* More obvious tap feedback */
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .game-icon {
+    font-size: 6rem;
+  }
+  
+  .game-title {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .hub-title {
+    font-size: 3rem;
+  }
+  
+  .hub-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .game-card {
+    min-height: 150px;
+  }
+  
+  .game-icon {
+    font-size: 4rem;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Card from './Card'
 import soundPlayer from '../../../utils/sounds'
+import { isTouchDevice } from '../../../utils/deviceDetection'
 import './Memory.css'
 
 // Card images - using emojis for now, you can replace with images later

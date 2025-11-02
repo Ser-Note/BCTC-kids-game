@@ -152,3 +152,46 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .level-card {
+    padding: 2.5rem;
+    min-height: 240px;
+  }
+  
+  .level-card:hover {
+    /* Remove hover effect on touch */
+    transform: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .level-card:active {
+    /* Better tap feedback */
+    transform: scale(0.95);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .level-icon {
+    font-size: 5rem;
+  }
+  
+  .level-name {
+    font-size: 2.2rem;
+  }
+  
+  .level-description {
+    font-size: 1.2rem;
+  }
+  
+  .close-button {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+  }
+  
+  .close-button:hover {
+    /* Remove hover rotation on touch */
+    transform: scale(1.1);
+  }
+}
