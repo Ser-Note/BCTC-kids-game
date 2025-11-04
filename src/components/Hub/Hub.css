@@ -3,10 +3,16 @@
   max-width: 1200px;
   text-align: center;
   padding: 2rem;
+  padding-bottom: 4rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .hub-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
 }
 
 .hub-title {
@@ -29,6 +35,8 @@
   gap: 2rem;
   max-width: 900px;
   margin: 0 auto;
+  width: 100%;
+  padding-bottom: 2rem;
 }
 
 .game-card {
@@ -85,9 +93,13 @@
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
+  .hub {
+    padding-bottom: 3rem;
+  }
+
   .game-card {
     /* Larger tap targets for touch */
-    min-height: 200px;
+    min-height: 180px;
   }
   
   .game-card:hover {
@@ -103,38 +115,114 @@
   }
   
   .game-icon {
-    font-size: 6rem;
+    font-size: 5rem;
   }
   
   .game-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+}
+
+/* Tablet landscape and small iPads */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .game-card {
+    min-height: 200px;
   }
 }
 
 /* Mobile optimizations */
 @media (max-width: 768px) {
+  .hub {
+    width: 95%;
+    padding: 1.5rem 1rem;
+    padding-bottom: 3rem;
+  }
+
+  .hub-header {
+    margin-bottom: 1.5rem;
+  }
+
   .hub-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   
   .hub-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   
   .games-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    padding-bottom: 1rem;
   }
   
   .game-card {
-    min-height: 150px;
+    min-height: 140px;
   }
   
   .game-icon {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
   
   .game-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hub {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .hub-title {
+    font-size: 2rem;
+  }
+  
+  .hub-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    max-width: 100%;
+  }
+  
+  .game-card {
+    min-height: 120px;
+    border-radius: 20px;
+  }
+  
+  .game-icon {
+    font-size: 3rem;
+  }
+  
+  .game-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hub-title {
+    font-size: 1.8rem;
+  }
+  
+  .game-card {
+    min-height: 110px;
+  }
+  
+  .game-icon {
+    font-size: 2.5rem;
+  }
+  
+  .game-title {
+    font-size: 1rem;
   }
 }
