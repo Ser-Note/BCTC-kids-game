@@ -177,8 +177,8 @@ function Runner({ difficulty = 'easy', onBackToHub }) {
             const playerHeight = isDucking ? 30 : 60
             const playerWidth = 30
             
-            // Reduce hitbox by adding padding (makes hitbox smaller)
-            const hitboxPadding = 8
+            // Reduce hitbox by adding padding (makes hitbox much smaller)
+            const hitboxPadding = 12
             
             const obsLeft = obs.x
             const obsRight = obs.x + 10
