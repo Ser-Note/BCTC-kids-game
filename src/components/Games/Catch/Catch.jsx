@@ -212,8 +212,8 @@ function Catch({ difficulty = 'easy', onBackToHub }) {
           })).filter(item => {
             // Check if item reached the bottom
             if (item.y > 85) {
-              // Check if caught by basket (within ±8% of basket position)
-              const caught = Math.abs(item.x - mousePositionRef.current) < 8
+              // Check if caught by basket (wider catch area for better gameplay)
+              const caught = Math.abs(item.x - mousePositionRef.current) < 12
               
               if (caught) {
                 if (item.isGood) {

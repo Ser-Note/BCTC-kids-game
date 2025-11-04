@@ -171,21 +171,24 @@ function Runner({ difficulty = 'easy', onBackToHub }) {
             // Remove if off screen
             if (obs.x < -10) return false
             
-            // Collision detection with player
+            // Collision detection with player - smaller hitbox for fairness
             const playerX = 15
             const playerY = playerYRef.current
             const playerHeight = isDucking ? 30 : 60
             const playerWidth = 30
+            
+            // Reduce hitbox by adding padding (makes hitbox smaller)
+            const hitboxPadding = 8
             
             const obsLeft = obs.x
             const obsRight = obs.x + 10
             const obsTop = obs.y + 50
             const obsBottom = obs.y
             
-            const playerLeft = playerX
-            const playerRight = playerX + playerWidth
-            const playerTop = playerY + playerHeight
-            const playerBottom = playerY
+            const playerLeft = playerX + hitboxPadding
+            const playerRight = playerX + playerWidth - hitboxPadding
+            const playerTop = playerY + playerHeight - hitboxPadding
+            const playerBottom = playerY + hitboxPadding
             
             // Simple AABB collision
             if (
