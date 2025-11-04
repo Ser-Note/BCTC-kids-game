@@ -8,6 +8,9 @@ import TicTacToe from './components/Games/TicTacToe/TicTacToe'
 import WhackAMole from './components/Games/WhackAMole/WhackAMole'
 import Snake from './components/Games/Snake/Snake'
 import Maze from './components/Games/Maze/Maze'
+import RocketMath from './components/Games/RocketMath/RocketMath'
+import WordScramble from './components/Games/WordScramble/WordScramble'
+import PictureWords from './components/Games/PictureWords/PictureWords'
 import DifficultySelector from './components/Shared/DifficultySelector/DifficultySelector'
 import './App.css'
 
@@ -47,6 +50,9 @@ function App() {
     if (selectedGame === 'whackamole') return 'Whack-a-Mole'
     if (selectedGame === 'snake') return 'Snake Game'
     if (selectedGame === 'maze') return 'Maze Runner'
+    if (selectedGame === 'rocketmath') return 'Rocket Math'
+    if (selectedGame === 'wordscramble') return 'Word Scramble'
+    if (selectedGame === 'picturewords') return 'Picture Words'
     return ''
   }
 
@@ -61,6 +67,9 @@ function App() {
       {currentScreen === 'whackamole' && <WhackAMole difficulty={difficulty} onBackToHub={navigateToHub} />}
       {currentScreen === 'snake' && <Snake difficulty={difficulty} onBackToHub={navigateToHub} />}
       {currentScreen === 'maze' && <Maze difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'rocketmath' && <RocketMath difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'wordscramble' && <WordScramble difficulty={difficulty} onBackToHub={navigateToHub} />}
+      {currentScreen === 'picturewords' && <PictureWords difficulty={difficulty} onBackToHub={navigateToHub} />}
       
       {/* Show difficulty selector when a game is selected but not started */}
       {selectedGame && !difficulty && currentScreen === 'hub' && (

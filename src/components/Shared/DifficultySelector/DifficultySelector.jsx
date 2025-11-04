@@ -43,6 +43,21 @@ function DifficultySelector({ gameName, onSelect, onClose }) {
       easy: '9x9 maze • 3 collectibles ⭐',
       medium: '13x13 maze • 5 collectibles',
       hard: '17x17 maze • 7 collectibles'
+    },
+    'Rocket Math': {
+      easy: 'Numbers 1-5 • Addition • 8 Qs',
+      medium: 'Numbers 1-10 • +/− • 60s timer',
+      hard: 'Numbers 1-20 • +/− • 45s timer'
+    },
+    'Word Scramble': {
+      easy: '3-letter words • 6 matches • Hint',
+      medium: '4-letter words • 8 matches',
+      hard: '5-letter words • 10 matches'
+    },
+    'Picture Words': {
+      easy: '3-letter words • Click choice',
+      medium: '4-letter words • Type it!',
+      hard: '5-6 letter words • Type it!'
     }
   }
 
