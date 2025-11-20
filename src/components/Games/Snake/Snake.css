@@ -1,14 +1,16 @@
 .snake-game {
+  position: fixed; /* take game out of document flow and fill viewport */
+  inset: 0;
   width: 100%;
-  height: 100vh;
   background: radial-gradient(ellipse at top, #1a1a2e 0%, #0f0f1e 100%);
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  overflow: hidden;
+  justify-content: flex-start; /* keep content from centering vertically to avoid off-screen cropping */
+  padding: 0.75rem 0.75rem 1rem;
+  overflow: hidden; /* prevent this screen from causing document scroll */
+  box-sizing: border-box;
+  z-index: 999; /* sit above main app content */
 }
 
 .snake-game::before {
@@ -134,7 +136,7 @@
   text-shadow: 0 0 10px rgba(138, 201, 38, 0.5);
 }
 
-.game-board {
+.snake-game .game-board {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
@@ -143,20 +145,21 @@
   backdrop-filter: blur(10px);
   padding: 0;
   border-radius: 16px;
-  width: 600px;
-  height: 600px;
-  box-shadow: 
+  /* compute a square size that fits both width and available height
+     subtract estimated header+stats area (160px) from viewport height */
+  width: min(80vmin, calc(100vh - 160px));
+  height: min(80vmin, calc(100vh - 160px));
+  box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.5),
     0 0 0 3px rgba(138, 201, 38, 0.3),
     inset 0 0 30px rgba(0, 0, 0, 0.3);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   border: 3px solid rgba(138, 201, 38, 0.2);
   overflow: hidden;
   position: relative;
   z-index: 10;
 }
-
-.grid-cell {
+.snake-game .grid-cell {
   background: rgba(30, 30, 50, 0.4);
   width: 100%;
   height: 100%;
@@ -169,7 +172,7 @@
   transition: none;
 }
 
-.grid-cell.snake-head {
+.snake-game .grid-cell.snake-head {
   background: radial-gradient(circle, #8ac926 0%, #6a9920 100%);
   box-shadow: 
     0 0 20px rgba(138, 201, 38, 0.8),
@@ -179,7 +182,7 @@
   z-index: 3;
 }
 
-.grid-cell.snake-head::before {
+.snake-game .grid-cell.snake-head::before {
   content: '👁️';
   position: absolute;
   font-size: 0.6rem;
@@ -189,7 +192,7 @@
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
-.grid-cell.snake-body {
+.snake-game .grid-cell.snake-body {
   background: linear-gradient(135deg, #6a9920 0%, #5a8518 100%);
   box-shadow: 
     inset 0 1px 3px rgba(255, 255, 255, 0.2),
@@ -199,7 +202,7 @@
   z-index: 2;
 }
 
-.food-item {
+.snake-game .food-item {
   font-size: 1.6rem;
   animation: foodBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
@@ -207,7 +210,7 @@
   z-index: 4;
 }
 
-.touch-controls {
+.snake-game .touch-controls {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,12 +218,12 @@
   margin-top: 1rem;
 }
 
-.control-row {
+.snake-game .control-row {
   display: flex;
   gap: 0.5rem;
 }
 
-.control-btn {
+.snake-game .control-btn {
   background: white;
   border: none;
   width: 70px;
@@ -239,7 +242,7 @@
   transform: scale(0.9);
 }
 
-.start-overlay {
+.snake-game .start-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -253,7 +256,7 @@
   animation: fadeIn 0.3s ease-out;
 }
 
-.start-content {
+.snake-game .start-content {
   background: white;
   padding: 3rem;
   border-radius: 30px;
@@ -262,7 +265,7 @@
   animation: scaleIn 0.5s ease-out;
 }
 
-.start-title {
+.snake-game .start-title {
   font-size: 2.5rem;
   background: linear-gradient(135deg, #8ac926 0%, #6a9920 100%);
   -webkit-background-clip: text;
@@ -272,14 +275,14 @@
   font-weight: 800;
 }
 
-.start-instructions {
+.snake-game .start-instructions {
   font-size: 1.5rem;
   color: #666;
   margin-bottom: 2rem;
   line-height: 1.6;
 }
 
-.start-button {
+.snake-game .start-button {
   background: linear-gradient(135deg, #8ac926 0%, #6a9920 100%);
   color: white;
   border: none;
@@ -302,7 +305,7 @@
   transform: translateY(-1px);
 }
 
-.win-overlay {
+.snake-game .win-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -316,7 +319,7 @@
   animation: fadeIn 0.3s ease-in;
 }
 
-.win-content {
+.snake-game .win-content {
   background: white;
   padding: 3rem;
   border-radius: 30px;
@@ -325,40 +328,40 @@
   animation: scaleIn 0.5s ease-out;
 }
 
-.win-title {
+.snake-game .win-title {
   font-size: 4rem;
   color: #FF6B6B;
   margin-bottom: 1rem;
   animation: bounce 1s ease-in-out infinite;
 }
 
-.win-message {
+.snake-game .win-message {
   font-size: 2rem;
   color: #333;
   margin-bottom: 1rem;
 }
 
-.win-stats {
+.snake-game .win-stats {
   font-size: 1.5rem;
   color: #666;
   margin-bottom: 1rem;
 }
 
-.win-stats.high {
+.snake-game .win-stats.high {
   color: #5151E5;
   font-weight: 700;
   font-size: 2rem;
 }
 
-.win-buttons {
+.snake-game .win-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 2rem;
 }
 
-.play-again-button,
-.back-to-hub-button {
+.snake-game .play-again-button,
+.snake-game .back-to-hub-button {
   padding: 1.5rem 3rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -369,24 +372,24 @@
   font-family: 'Fredoka', sans-serif;
 }
 
-.play-again-button {
+.snake-game .play-again-button {
   background: linear-gradient(135deg, #8ac926 0%, #6a9920 100%);
   color: white;
   box-shadow: 0 6px 20px rgba(138, 201, 38, 0.4);
 }
 
-.play-again-button:hover {
+.snake-game .play-again-button:hover {
   box-shadow: 0 8px 25px rgba(138, 201, 38, 0.5);
   transform: translateY(-2px);
 }
 
-.back-to-hub-button {
+.snake-game .back-to-hub-button {
   background: #FF6B6B;
   color: white;
 }
 
-.play-again-button:hover,
-.back-to-hub-button:hover {
+.snake-game .play-again-button:hover,
+.snake-game .back-to-hub-button:hover {
   transform: translateY(-2px);
 }
 
@@ -431,44 +434,45 @@
 }
 
 /* Mobile responsive */
-@media (max-width: 768px) {
-  .snake-title {
+@media (max-width: 968px) {
+  .snake-game .snake-title {
     font-size: 1.8rem;
   }
   
-  .game-board {
-    width: 400px;
-    height: 400px;
+  /* On smaller screens reduce the board to fit comfortably */
+  .snake-game .game-board {
+    width: min(86vmin, calc(100vh - 160px));
+    height: min(86vmin, calc(100vh - 160px));
   }
   
-  .food-item {
+  .snake-game .food-item {
     font-size: 1.2rem;
   }
   
-  .grid-cell.snake-head::before {
+  .snake-game .grid-cell.snake-head::before {
     font-size: 0.45rem;
   }
   
-  .stat-label {
+  .snake-game .stat-label {
     font-size: 0.9rem;
   }
   
-  .stat-value {
+  .snake-game .stat-value {
     font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .game-board {
-    width: 340px;
-    height: 340px;
+  .snake-game .game-board {
+    width: min(90vmin, calc(100vh - 140px));
+    height: min(90vmin, calc(100vh - 140px));
   }
   
-  .food-item {
+  .snake-game .food-item {
     font-size: 1rem;
   }
   
-  .grid-cell.snake-head::before {
+  .snake-game .grid-cell.snake-head::before {
     font-size: 0.35rem;
   }
 }
